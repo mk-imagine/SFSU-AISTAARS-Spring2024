@@ -1,6 +1,6 @@
 import java.util.Scanner;
 
-public class Main {
+public class ClassroomDriver {
     public static void main(String[] args) {
 
         Classroom blakeslee = new Classroom();
