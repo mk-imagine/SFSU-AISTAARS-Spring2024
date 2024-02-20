@@ -1,4 +1,6 @@
-public class PrimeNumber {
+package Array1d;
+
+public class PrimeNumbers {
     public static void main(String[] args) {
             final int NUMBER_OF_PRIMES = 50; // Number of primes to display
             final int NUMBER_OF_PRIMES_PER_LINE = 10; // Display 1per line
