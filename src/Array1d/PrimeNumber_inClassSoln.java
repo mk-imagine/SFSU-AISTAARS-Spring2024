@@ -15,9 +15,9 @@ public class PrimeNumber_inClassSoln {
         int[] primeAry = new int[numberOfPrimes];
         primeAry[0] = 2;
 
-        for (int i = 0; i < numberOfPrimes; i++) {
+        for (int i = 0; i < numberOfPrimes; ) {
             if(isPrime(numToCheck, primeAry)) {
-                primeAry[i] = numToCheck;
+                primeAry[i++] = numToCheck;
             }
             numToCheck++;
         }

@@ -15,7 +15,7 @@ public class Blackjack_soln0 {
     public static final int HAND_SIZE = 2;
 
     public static String[][] initDeck() {
-        String[][] deck = new String[DECK_SIZE][HAND_SIZE];
+        String[][] deck = new String[DECK_SIZE][2];
 
 //        for (int i = 0; i < DECK_SIZE; i++) {
 //            String[] card = {RANKS[i%13], SUITS[(i/13)%4]};
