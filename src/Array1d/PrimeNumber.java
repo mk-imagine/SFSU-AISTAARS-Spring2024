@@ -1,7 +1,9 @@
+package Array1d;
+
 public class PrimeNumber {
     public static void main(String[] args) {
             final int NUMBER_OF_PRIMES = 50; // Number of primes to display
-            final int NUMBER_OF_PRIMES_PER_LINE = 10; // Display 1per line
+            final int NUMBER_OF_PRIMES_PER_LINE = 10; // Display 10 per line
             int count = 0; // Count the number of prime numbers
             int number = 2; // A number to be tested for primeness
 
@@ -30,6 +32,12 @@ public class PrimeNumber {
                         }
                     else
                         System.out.print(number + " ");
+                        try {
+                            Thread.sleep(100);
+                        } catch (Exception e) {
+
+
+                    }
                 }
 
                 // Check if the next number is prime
