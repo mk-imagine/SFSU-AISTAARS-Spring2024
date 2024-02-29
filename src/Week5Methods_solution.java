@@ -61,19 +61,22 @@ public class Week5Methods_solution {
     }
 
     public static double circleOverlapArea(double x1, double y1, double r1, double x2, double y2, double r2) {
-        double d = circleDistance(x1, y1, r1, x2, y2, r2);
-        if (d > 0) {
+        double d = pointDistance(x1, y1, x2, y2);
+
+        if (d > r1 + r2) {
             return 0;
+        } else if (d < Math.min(r1, r2)) {
+            return circleArea(Math.min(r1, r2));
         }
 
         double d1 = (r1 * r1 - r2 * r2 + d * d) / (2 * d);
-        double d2 = (r2 * r2 - r1 * r1 + d * d) / (2 * d);
+        double d2 = d - d1;
 
         double c1halfangle = Math.acos(d1 / r1);
         double c2halfangle = Math.acos(d2 / r2);
 
-        double c1segment = r1 * r1 * c1halfangle - d1 * Math.sqrt(r1 * r1 - d1 * d1);
-        double c2segment = r2 * r2 * c2halfangle - d2 * Math.sqrt(r2 * r2 - d2 * d2);
+        double c1segment = r1 * r1 * (c1halfangle - Math.sin(c1halfangle));
+        double c2segment = r2 * r2 * (c2halfangle - Math.sin(c2halfangle));
 
         return c1segment + c2segment;
     }
@@ -93,6 +96,8 @@ public class Week5Methods_solution {
         boolean[] intersectAns = {true, false, false, false, true, true, false, true, false, true};
         double[] cDistAns = {-2, 2.16, 2.397, 3.296, -4.4, -1.86, 1.251, -3.6, 3.655, -12};
         double[] cAreaAns = {3.142, 15.205, 10.179, 113.097};
+        double[] cSectorAns = {cAreaAns[0]/2, cAreaAns[1]/2, cAreaAns[2]/2, cAreaAns[3]/2};
+        double[] cOverlapAreaAns = {3.142, 0, 0, 0, 15.205, 1.301, 0, 10.179, 0, 113.097};
 
         // POINT DISTANCE TESTS
         System.out.println("pointDistance():");
@@ -145,6 +150,31 @@ public class Week5Methods_solution {
                         i,
                         circleArea(c[i][2]),
                         cAreaAns[ansIdx++]);
+        }
+
+        // CIRCLE SECTOR TESTS
+        System.out.println("circleSector():");
+        System.out.println("  eval pair   actual   expected");
+        ansIdx = 0;
+        for (int i = 0; i < c.length; i++) {
+            System.out.printf("   c%d : %7.3f   %7.3f\n",
+                    i,
+                    circleSector(c[i][2], Math.PI),
+                    cSectorAns[ansIdx++]);
+        }
+
+        // CIRCLES OVERLAP AREA TESTS
+        System.out.println("circleOverlapArea():");
+        System.out.println("  eval pair   actual   expected");
+        ansIdx = 0;
+        for (int i = 0; i < c.length; i++) {
+            for (int j = i; j < c.length; j++) {
+                System.out.printf("   c%d - c%d : %7.3f   %7.3f\n",
+                        i,
+                        j,
+                        circleOverlapArea(c[i][0], c[i][1], c[i][2], c[j][0], c[j][1], c[j][2]),
+                        cOverlapAreaAns[ansIdx++]);
+            }
         }
     }
 
