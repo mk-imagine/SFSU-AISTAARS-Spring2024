@@ -9,7 +9,7 @@ public class Week5Methods_solution {
     the two circles intersect.
 
     circleDistance - this method should take in two x,y coordinate points and two r radius values and calculate the
-    distance between the exteriors of two circles
+    distance between the exteriors of two circles.  If the circles intersect, the value should be negative.
     EXAMPLE: If circle1 has x1 = 0, y1 = 0, r1 = 1 and circle2 has x2 = 5, y1 = 0, r2 = 2, this function should return
     a distance of 2.
 
@@ -84,21 +84,23 @@ public class Week5Methods_solution {
         // To make it easier to follow the variables and to automate the tests,
         // I put the values into a 2d array with the following layout:
         // { {x1, y1, r1}, {x2, y2, r2}, ... , {xn, yn, rn} }
-        double[] c1 = {0, 0, 1};
-        double[] c2 = {3.2, 4.3, 2.2};
-        double[] c3 = {4.5, 2.6, 1.8};
-        double[] c4 = {-5, 9, 6};
-        double[][] c = {c1, c2, c3, c4};
+        double[] c0 = {0, 0, 1};
+        double[] c1 = {3.2, 4.3, 2.2};
+        double[] c2 = {4.5, 2.6, 1.8};
+        double[] c3 = {-5, 9, 6};
+        double[][] c = {c0, c1, c2, c3};
         double[] pointAns = {0, 5.360, 5.197, 10.296, 0, 2.140, 9.451, 0, 11.455, 0};
-        boolean[] intersectAns = {true, true, true, true, true, true, true, true, true, true};
+        boolean[] intersectAns = {true, false, false, false, true, true, false, true, false, true};
+        double[] cDistAns = {-2, 2.16, 2.397, 3.296, -4.4, -1.86, 1.251, -3.6, 3.655, -12};
+        double[] cAreaAns = {3.142, 15.205, 10.179, 113.097};
 
         // POINT DISTANCE TESTS
         System.out.println("pointDistance():");
-        System.out.println("  eval pair  actual  expected");
+        System.out.println("  eval pair   actual  expected");
         int ansIdx = 0;
         for (int i = 0; i < c.length; i++) {
             for (int j = i; j < c.length; j++) {
-                System.out.printf("   c%d - c%d : %6.3f   %6.3f\n", 
+                System.out.printf("   c%d - c%d : %7.3f   %7.3f\n", 
                                   i, 
                                   j,
                                   pointDistance(c[i][0], c[i][1], c[j][0], c[j][1]),
@@ -108,16 +110,41 @@ public class Week5Methods_solution {
 
         // CIRCLES INTERSECT TESTS
         System.out.println("circlesIntersect():");
-        System.out.println("  eval pair  actual   expected");
+        System.out.println("  eval pair   actual   expected");
         ansIdx = 0;
         for (int i = 0; i < c.length; i++) {
             for (int j = i; j < c.length; j++) {
-                System.out.printf("   c%d - c%d : %6B   %6B\n", 
+                System.out.printf("   c%d - c%d : %7B   %7B\n", 
                                   i, 
                                   j,
                                   circlesIntersect(c[i][0], c[i][1], c[i][2], c[j][0], c[j][1], c[j][2]),
                                   intersectAns[ansIdx++]);
             }
+        }
+
+        // CIRCLES DISTANCE TESTS
+        System.out.println("circlesDistance():");
+        System.out.println("  eval pair   actual   expected");
+        ansIdx = 0;
+        for (int i = 0; i < c.length; i++) {
+            for (int j = i; j < c.length; j++) {
+                System.out.printf("   c%d - c%d : %7.3f   %7.3f\n", 
+                                  i, 
+                                  j,
+                                  circleDistance(c[i][0], c[i][1], c[i][2], c[j][0], c[j][1], c[j][2]),
+                                  cDistAns[ansIdx++]);
+            }
+        }
+
+        // CIRCLE AREA TESTS
+        System.out.println("circleArea():");
+        System.out.println("  eval pair   actual   expected");
+        ansIdx = 0;
+        for (int i = 0; i < c.length; i++) {
+                System.out.printf("   c%d : %7.3f   %7.3f\n",
+                        i,
+                        circleArea(c[i][2]),
+                        cAreaAns[ansIdx++]);
         }
     }
 
