@@ -24,8 +24,7 @@ public class Blackjack_soln0 {
 
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 13; j++) {
-                String[] card = {RANKS[j], SUITS[i]};
-                deck[j + (i * 13)] = card;
+                deck[j + (i * 13)] = new String[]{ RANKS[j], SUITS[i] };
             }
         }
 
