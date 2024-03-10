@@ -29,3 +29,7 @@ bin/
 
 ### Mac OS ###
 .DS_Store
+
+### LaTeX ###
+**/aux
+*.synctex.gz

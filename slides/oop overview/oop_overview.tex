@@ -1,0 +1,148 @@
+\documentclass[aspectratio=169]{beamer}
+% \usetheme{CambridgeUS}
+% \usetheme{Boadilla}
+\usepackage{times,
+hyperref,
+outlines,
+amsmath,
+amssymb,
+amsthm,
+enumitem,
+listings,
+graphicx}
+
+% Code block environments
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codepurple}{rgb}{0.58,0,0.82}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\lstdefinestyle{mystyle}{
+    backgroundcolor=\color{backcolour},   
+    commentstyle=\color{codegreen},
+    keywordstyle=\color{magenta},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codepurple},
+    basicstyle=\ttfamily\footnotesize,
+    breakatwhitespace=false,         
+    breaklines=true,                 
+    captionpos=b,                    
+    keepspaces=true,                 
+    numbers=left,                    
+    numbersep=5pt,                  
+    showspaces=false,                
+    showstringspaces=false,
+    showtabs=false,                  
+    tabsize=2,
+    xleftmargin=.05\textwidth,
+    xrightmargin=.05\textwidth
+}
+\lstset{language=Java,style=mystyle}
+\setbeamertemplate{itemize item}[circle]
+
+\title{Object Oriented Programming\\
+\large Classes and Objects}
+\author{Mark Kim}
+\institute{San Francisco State University}
+\date{3/9/2024}
+
+\begin{document}
+
+\frame{\titlepage}
+
+\begin{frame}[fragile]
+\frametitle{Classes}
+Classes are an \alert{abstract} concept.  They are a blueprint for something
+that belongs to that class.
+\begin{example}
+    In the following class, any person who is part of the Student class has
+    an \verb|id| and a \verb|name|.
+\begin{lstlisting}
+class Student {
+    String student_id;
+    String name;
+}
+\end{lstlisting}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Objects}
+Objects are the \alert{manifestation} of a Class.
+\begin{example}
+    \verb|student0| is a Student.  This Student therefore has a \verb|student_id| and a \verb|name|.
+\end{example}
+\vspace*{4mm}
+This object can now be \alert{instantiated}.
+\begin{example}
+\begin{lstlisting}
+Student student_0 = new Student();
+\end{lstlisting}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Coding Classes and Objects}
+Classes are created in their own \verb|.java| file.\\
+These classes can then be used within other classes.
+
+\begin{example}[student.java]
+\begin{lstlisting}
+class Student{
+    public String id;
+    public String name;
+
+    public Student() {
+        this.id = "000000000";
+        this.name = "Default Student";
+    }
+}
+\end{lstlisting}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Coding Classes and Objects, continued}
+The class containing the \verb|main| method can then instantiate
+objects from these classes.
+\begin{example}[createStudent.java]
+\begin{lstlisting}
+class StudentDriver{
+    public static void main(String[] args) {
+        Student studentA = new Student();
+    }
+
+    System.out.println(studentA.id);
+    // prints "000000000" to console
+    System.out.println(studentA.name);
+    // prints "Default Student" to console
+}
+\end{lstlisting}
+\end{example}
+\end{frame}
+
+\begin{frame}[fragile]
+\frametitle{Class attributes and behaviors}
+Earlier, our student class only had attributes (and a constructor).\\
+Classes also have behaviors.
+\begin{example}[student.java]
+\begin{lstlisting}
+class Student{
+    // attributes
+    public String id;
+    public String name;
+
+    // behaviors
+    public Student() { // Constructor
+        this.id = "000000000";
+        this.name = "Default Student";
+    }
+    public compareName(Student b) {
+        return this.name.compareTo(b.name);
+    }
+ }
+\end{lstlisting}
+\end{example}
+\end{frame}
+
+\end{document}
