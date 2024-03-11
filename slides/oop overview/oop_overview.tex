@@ -1,7 +1,7 @@
 \documentclass[aspectratio=169]{beamer}
 % \usetheme{CambridgeUS}
 % \usetheme{Boadilla}
-\usepackage{times,
+\usepackage{
 hyperref,
 outlines,
 amsmath,
@@ -92,7 +92,7 @@ class Student{
     public String id;
     public String name;
 
-    public Student() {
+    public Student() { // notice that this is not static
         this.id = "000000000";
         this.name = "Default Student";
     }
@@ -132,7 +132,7 @@ class Student{
     public String id;
     public String name;
 
-    // behaviors
+    // behaviors; notice that these are all not static
     public Student() { // Constructor
         this.id = "000000000";
         this.name = "Default Student";
